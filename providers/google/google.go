@@ -25,6 +25,9 @@ func New(clientKey, secret, callbackURL string, scopes ...string) *Provider {
 		Secret:       secret,
 		CallbackURL:  callbackURL,
 		providerName: "google",
+		authCodeOptions: []oauth2.AuthCodeOption{
+			oauth2.SetAuthURLParam("access_type", "offline"),
+		},
 	}
 	p.config = newConfig(p, scopes)
 	return p
